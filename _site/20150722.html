@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="baidu-site-verification" content="2XMQAJIGe2" />
+	<title>PHP多版本共存</title>
+	<meta name="description" content="随着PHP7.0的到来，很多PHPer都会按捺不住自己内心的激动。想去试试PHP7.0，去感受一下直接跨过6来到7的PHP。这个时候你又不能抛弃之前的PHP5.x，所以你需要一个方案来实现多版本PHP共存，并且切换自如。这篇文章就介绍如何在Mac上实现多版本PHP共存。">
+	
+		<link rel="stylesheet" href="/assets/css/monokai.css">
+		<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/assets/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="/assets/css/all.css">
+		<link rel="stylesheet" href="/assets/css/font-awesome.min.css"/>
+	
+	<link rel="alternate" type="application/rss+xml" title="searchpcc - 一个正在老去的90后程序员" href="http://searchp.cc/feed.xml" />
+	
+		<link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+	
+</head>
+
+
+<body>
+<!--引入导航-->
+<header>
+	<!--导航菜单-->
+	<nav class="navbar header navbar-fixed-top">
+		<div class="container-fluid">
+			<span class="navbar-brand"><a href="/">
+				
+					<img id="headerimg" src="/assets/images/header.jpeg"></a>
+				
+			</span>
+			<div class="navbar-header">
+				<button type="button" class ="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">searchpcc</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/archive/">归档</a></li>
+					<li><a href="/category/">分类</a></li>
+					<li><a href="/series/">连载</a></li>
+					<li><a href="/resume/">简历</a></li>
+					<li><a href="/about/">关于</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav><!-- 导航菜单结束-->
+</header>
+
+
+<!--主体内容-->
+<div class="page-content">
+    <div class="container-fluid">
+    	<div class="row">
+                <div class="col-md-offset-2 col-md-8  main-content">
+                	<div  id="searchpcc">
+						<a href="/"><img id="abouthead" src="/assets/images/about.png"></a>
+						<p>一个正在老去的90后程序员 --searchpcc</p>
+                	</div>
+                </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8  main-content">
+                <div class="post">
+	<!--文章标题和说明-->
+	<header>
+		<!--文章名称-->
+		<h1 class="post-title">PHP多版本共存</h1>
+		<!--文章描述，时间和分类-->
+		<p class="desc">
+			<i class="fa fa-calendar"></i>
+			2015/07/22 &nbsp;&nbsp;
+			<i class="fa fa-folder-open-o fa-fw"></i>
+			<a href="/category/">php </a>
+		</p>
+	</header>
+
+	<!--文章内容-->
+	<article class="post-content">
+		<p>随着PHP7.0的到来，很多PHPer都会按捺不住自己内心的激动。想去试试PHP7.0，去感受一下直接跨过6来到7的PHP。这个时候你又不能抛弃之前的PHP5.x，所以你需要一个方案来实现多版本PHP共存，并且切换自如。这篇文章就介绍如何在Mac上实现多版本PHP共存。</p>
+
+<h2 id="id-php">安装多版本PHP</h2>
+
+<p>使用强大的brew安装54,55,56,70版本的PHP。</p>
+
+<pre><code class="language-shell"># 安装php54
+brew install php54
+
+# 安装php55
+brew unlink php54
+brew install php55
+
+# 安装php56
+brew unlink php55
+brew install php56
+
+# 安装php7.0
+brew unlink php56
+brew install php70
+
+</code></pre>
+
+<p>到/usr/local/Cellar/下查看PHP的安装情况。发现PHP已经安装成功。</p>
+
+<h2 id="id-php-version">安装php-version</h2>
+
+<p>安装<a href="/assets/images/php-version.png">php-version</a>进行PHP版本的管理。安装的方法如下:</p>
+
+<pre><code class="language-shell">brew tap homebrew/dupes
+brew tap josegonzalez/homebrew-php
+brew install php-version
+
+# 注意：untap josegonzalez/homebrew-php
+rew untap josegonzalez/homebrew-php
+</code></pre>
+
+<p>编辑 ~/.zshrc 文件，在最后一行加入如下内容。然后soure ~/.zshrc</p>
+
+<pre><code class="language-shell">source $(brew --prefix php-version)/php-version.sh &amp;&amp; php-version 5
+</code></pre>
+
+<p>测试php-version</p>
+
+<pre><code class="language-shell">php-version
+# 使用PHP7.0
+php-version 7.0.0beta2
+# 显示当前版本
+php -v
+</code></pre>
+
+<p><img src="/assets/images/php-version.png" alt="php-version显示" /></p>
+
+<h2 id="id-apache">配置Apache</h2>
+
+<p>虽然，在你的控制台php -v显示的是你用php-version 选定的PHP版本。但是，如果你不只是想让后台脚本采用你选择的PHP版本，还想让Web服务器也支持。这个时候你需要配置Web服务器的配置文件。Mac上默认服务器Apache修改配置文件 vim /etc/apache2/httpd.conf</p>
+
+<pre><code class="language-apache"># php 5.4
+# LoadModule php5_module /usr/local/Cellar/php54/5.4.43_2/libexec/apache2/libphp5.so
+# php 5.5
+  LoadModule php5_module /usr/local/Cellar/php55/5.5.27_2/libexec/apache2/libphp5.so
+# php 5.6
+# LoadModule php5_module /usr/local/Cellar/php56/5.6.11_2/libexec/apache2/libphp5.so
+# php7.0
+# LoadModule php7_module /usr/local/Cellar/php70/7.0.0-beta.2/libexec/apache2/libphp7.so
+</code></pre>
+
+<p>注意：在Web服务器配置文件配置之前，需要你先用php-version选中你要配置的php。配置完之后重启Apache即可。</p>
+
+<h2 id="id-section">参考链接</h2>
+
+<p><a href="/assets/images/php-version.png">php-version</a></p>
+
+
+	</article>
+
+	<!--上下翻页-->
+	<ul class="pager pagination-sm">
+		<!--前一页-->
+		
+		<li class="previous">
+			<a href="/20150609.html" title="CodeIgniter集成Smarty">&larr; Previous</a>
+		</li>
+		
+
+		<!--下一页-->
+		
+		<li class="next">
+			<a href="/20150723.html" title="iterm2之ssh配置">Next &rarr;</a>
+		</li>
+		
+	</ul>
+	<!--引入评论-->
+	<div class="comment">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="1437832749" data-title="PHP多版本共存" data-url="http://searchpcc.com/20150722.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+		var duoshuoQuery = {short_name:"searchpcc"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0]
+			|| document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--引入结尾-->
+<!--页脚-->
+<footer>
+   	<p>Copyright  ©  2015  All Rights Reserved <script type="text/javascript">
+	var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cspan id='cnzz_stat_icon_1255277077'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1255277077%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+</script></p>
+ 	<div class="scroll-top hidden-xs"><i class="fa fa-arrow-circle-up"></i></div>
+</footer>
+
+<!--引入脚本-->
+<!--所有脚本文件的引入-->
+
+	<script src="/assets/js/highlight.pack.js"></script>
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/bootstrap.min.js"></script>
+	<script src="/assets/js/all.js"></script>
+
+<script> hljs.initHighlightingOnLoad(); </script>
+
+</body>
+</html>

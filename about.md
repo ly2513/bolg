@@ -1,11 +1,11 @@
 ---
 layout: page
-title: About
+title: 关于
 permalink: /about/
 key: 1437063393
 ---
 <div class="about">
-	<h2>INFO</h2>
+	<h2>信息：</h2>
 	{% if site.user.email%}
 	<p>
 		<em>email</em> : <a href="mailto:{{ site.user.email }}">i@searchp.cc</a>
@@ -28,7 +28,7 @@ key: 1437063393
 	{% endif %}
 
 	{% if site.user.desc %}
-		<h2>DESC</h2>
+		<h2>简介：</h2>
 		<p>
 			{{ site.user.desc }}
 		</p>

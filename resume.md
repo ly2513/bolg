@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Resume
+title: 个人简历
 permalink: /resume/
 key: 1437063370
 ---
 <div class="read">
-<h2>lang</h2>
+<h2>语言：</h2>
 <div class='row'>
     <div class='col-xs-8'>
         <div class='progress'>
@@ -107,7 +107,7 @@ key: 1437063370
     </div>
 </div>
 
-<h2>tags</h2>
+<h2>标签：</h2>
 
 <p>
     <button class='btn btn-default btn-sm'>php</button>
@@ -133,7 +133,7 @@ key: 1437063370
     <button class='btn btn-default btn-xs'>Oracle</button>
 </p>
 
-<h2>project</h2>
+<h2>项目：</h2>
 <p>
 	<a href="http://class.qq.com">class.qq.com</a> <span>（YII，Redis，MySQL）</span>
 </p>

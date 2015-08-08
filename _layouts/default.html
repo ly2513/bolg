@@ -7,26 +7,19 @@
 <!--主体内容-->
 <div class="page-content">
     <div class="container-fluid">
-        <div class="row">
-        		<div class="col-md-2 col-md-offset-1 hidden-xs header-about">
-        			{% if site.model == 'pub' %}
-						<a href="/"><img id="abouthead" src="{{ site.pub.image }}about.png"></a>
-					{% else %}
+    	<div class="row">
+                <div class="col-md-offset-2 col-md-8  main-content">
+                	<div  id="searchpcc">
 						<a href="/"><img id="abouthead" src="{{ site.dev.image }}about.png"></a>
-					{% endif %}
-					<hr>
-					<p class='about-info'>文章：<a href="/archive">{{ site.posts.size }} </a>篇</p>
-					<p class='about-info'>项目：<a href="/resume">2</a> 个</p>
-					<p class='about-info'>书本：<a href="/read">30</a> 本</p>
-					<hr>
-					<p class='about-info'><a href="mailto:i@searchp.cc">Email: i@searchp.cc</a></p>
-					<p class='about-info'><a href="http://github.com/searchpcc">Github: searchpcc</a></p>
-					<hr>
-					<p class="notice">一个正在老去的90后程序员。</p>
-        		</div>	
-                <div class="col-md-8  main-content">
-                    {{ content }}
+						<p>一个正在老去的90后程序员 --searchpcc</p>
+                	</div>
                 </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8  main-content">
+                {{ content }}
+            </div>
         </div>
     </div>
 </div>

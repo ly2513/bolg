@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="baidu-site-verification" content="2XMQAJIGe2" />
+	<title>iterm2之ssh配置</title>
+	<meta name="description" content="说明一下：这里需要用到Expect。Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。">
+	
+		<link rel="stylesheet" href="/assets/css/monokai.css">
+		<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/assets/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="/assets/css/all.css">
+		<link rel="stylesheet" href="/assets/css/font-awesome.min.css"/>
+	
+	<link rel="alternate" type="application/rss+xml" title="searchpcc - 一个正在老去的90后程序员" href="http://searchp.cc/feed.xml" />
+	
+		<link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+	
+</head>
+
+
+<body>
+<!--引入导航-->
+<header>
+	<!--导航菜单-->
+	<nav class="navbar header navbar-fixed-top">
+		<div class="container-fluid">
+			<span class="navbar-brand"><a href="/">
+				
+					<img id="headerimg" src="/assets/images/header.jpeg"></a>
+				
+			</span>
+			<div class="navbar-header">
+				<button type="button" class ="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">searchpcc</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/archive/">归档</a></li>
+					<li><a href="/category/">分类</a></li>
+					<li><a href="/series/">连载</a></li>
+					<li><a href="/resume/">简历</a></li>
+					<li><a href="/about/">关于</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav><!-- 导航菜单结束-->
+</header>
+
+
+<!--主体内容-->
+<div class="page-content">
+    <div class="container-fluid">
+    	<div class="row">
+                <div class="col-md-offset-2 col-md-8  main-content">
+                	<div  id="searchpcc">
+						<a href="/"><img id="abouthead" src="/assets/images/about.png"></a>
+						<p>一个正在老去的90后程序员 --searchpcc</p>
+                	</div>
+                </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8  main-content">
+                <div class="post">
+	<!--文章标题和说明-->
+	<header>
+		<!--文章名称-->
+		<h1 class="post-title">iterm2之ssh配置</h1>
+		<!--文章描述，时间和分类-->
+		<p class="desc">
+			<i class="fa fa-calendar"></i>
+			2015/07/23 &nbsp;&nbsp;
+			<i class="fa fa-folder-open-o fa-fw"></i>
+			<a href="/category/">mac </a>
+		</p>
+	</header>
+
+	<!--文章内容-->
+	<article class="post-content">
+		<p>说明一下：这里需要用到Expect。Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。</p>
+
+<h2 id="id-expect">创建Expect文件</h2>
+
+<p>为每一台远程服务器创建一个Expect文件。我将下面这个文件命名为ssh111，并且将这个文件放到系统环境变量之中。为了简单，我直接将文件放到了<code>/usr/bin/</code>下面。</p>
+
+<pre><code class="language-shell">
+#!/usr/bin/expect -f
+
+# 设定变量
+set ip 192.168.0.111
+set username  searchpcc
+set password 123456
+# 连接
+spawn ssh $username@$ip
+set timeout 30
+# 处理第一次登陆时候的确认操作
+expect {
+        "(yes/no)?"
+        {send "yes\n";exp_continue}
+        "password:"
+        {send "$password\n"}
+}
+interact
+
+</code></pre>
+
+<h2 id="id-profileexpect">使用profile功能加载Expect文件</h2>
+
+<p>利用 Command + o 快捷键打开Profiles功能，然后选择Edit Profiles…，接着新建自己的profiles。</p>
+
+<p><img src="/assets/images/profiles.png" alt="编辑profiles" title="编辑profiles" /></p>
+
+<h2 id="id-section">进行登录操作</h2>
+
+<p>按下Command + o， 然后，选择你已经添加的profile，回车就可以自动登陆了。多个远程服务器设置添加多个Expect文件和多个profile就可以。</p>
+
+<h2 id="id-section-1">写在最后</h2>
+
+<p>因为我目前所在的环境远程服务器众多，所以为了方便远程登陆服务器就网上找了一下并且结合自己的理解采用了这样一个方式进行ssh登陆记住用户信息的处理。事实上你根本不需要使用profiles，你直接在终端输入一下ssh111试试，是不是直接登陆上了服务器呢？profiles在这里只是能够记录更多的信息而已。由此可见，在Linux和Unix上只要支持Expect，是不是就可以了呢？</p>
+
+
+	</article>
+
+	<!--上下翻页-->
+	<ul class="pager pagination-sm">
+		<!--前一页-->
+		
+		<li class="previous">
+			<a href="/20150722.html" title="PHP多版本共存">&larr; Previous</a>
+		</li>
+		
+
+		<!--下一页-->
+		
+		<li class="next disabled">
+			<a>Next &rarr;</a>
+		</li>
+		
+	</ul>
+	<!--引入评论-->
+	<div class="comment">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="1437804708" data-title="iterm2之ssh配置" data-url="http://searchpcc.com/20150723.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+		var duoshuoQuery = {short_name:"searchpcc"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0]
+			|| document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--引入结尾-->
+<!--页脚-->
+<footer>
+   	<p>Copyright  ©  2015  All Rights Reserved <script type="text/javascript">
+	var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cspan id='cnzz_stat_icon_1255277077'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1255277077%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+</script></p>
+ 	<div class="scroll-top hidden-xs"><i class="fa fa-arrow-circle-up"></i></div>
+</footer>
+
+<!--引入脚本-->
+<!--所有脚本文件的引入-->
+
+	<script src="/assets/js/highlight.pack.js"></script>
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/bootstrap.min.js"></script>
+	<script src="/assets/js/all.js"></script>
+
+<script> hljs.initHighlightingOnLoad(); </script>
+
+</body>
+</html>

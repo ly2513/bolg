@@ -1,11 +1,9 @@
 ---
 layout: post
-title:  Mac下iterm2支持ssh登陆信息保存
+title:  iterm2之ssh配置
 categories: [mac]
 key: 1437804708
 ---
-
-Mac下最强大的终端软件应该就是iterm2了（当然，不排除我见识浅陋	）。这边文章主要介绍一下如何让iterm2像SecureCRT一样能够记住ssh的登陆信息，不需要每一次都自己手动输入服务器的IP地址和用户的密码。是的，这篇文章的前提是Mac平台下。事实上这只是一个简单的思路，放到Linux或者Unix下都是适用的。
 
 说明一下：这里需要用到Expect。Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。
 

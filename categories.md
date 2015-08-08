@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Category
+title: 文章分类
 permalink: /category/
 ---
 

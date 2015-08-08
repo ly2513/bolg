@@ -5,29 +5,24 @@ layout: default
 <article class="desc-post">
 	<!--标题-->
 		<a href="{{ site.BASE_PATH }}{{ post.url }}"><h1>{{ post.title }}</h1></a>
-	
-
 	<!--日期-->
 	<div class="desc">
+		<i class="fa fa-user"></i>
+		<a href="/about/">{{ site.username }}</a>
+		&nbsp;&nbsp;
 		<i class="fa fa-calendar"></i>
 		{% assign d = post.date | date: "%d" | plus:'0' %}
 		<a href="/archive/">{{ post.date | date: "%Y" }}/{{ post.date | date: "%m" }}/{{ post.date | date: "%d" }}</a>
+
 		&nbsp;&nbsp;
 		<i class="fa fa-folder-open-o"></i>
-		<a href="/category/">{{ post.categories }}</a>
+		<a href="/category/">{{ post.categories }} > {{ post.title }}</a>
+
 	</div>
 
 	<!--文章摘要-->
 	{% if post.fullview %}
 		<p>{{ post.content }}</p>
-	{% else %}
-		{% if post.shortinfo %}
-			<p>{{ post.shortinfo }}</p>
-		{% elsif post.description %}
-			<p>{{ post.description }}</p>
-		{% else %}
-			<p>{{ post.excerpt }}</p>
-		{% endif %}
 	{% endif %}
 </article>
 {% endfor %}
@@ -38,14 +33,14 @@ layout: default
 		{% if paginator.previous_page %}
 		<li>
 			{% if paginator.previous_page == 1 %}
-			<a href="/">pre</a>
+			<a href="/">上一页</a>
 			{% else %}
-			<a href="/page{{ paginator.previous_page }}">pre</a>
+			<a href="/page{{ paginator.previous_page }}">上一页</a>
 			{% endif %}
 		</li>
 		{% else %}
 		<li class="disabled">
-			<a href="javascript:;">pre</a>
+			<a href="javascript:;">上一页</a>
 		</li>
 		{% endif %}
 
@@ -104,11 +99,11 @@ layout: default
 
 		{% if paginator.next_page %}
 		<li>
-			<a href="/page{{ paginator.next_page }}">next</a>
+			<a href="/page{{ paginator.next_page }}">下一页</a>
 		</li>
 		{% else %}
 		<li class="disabled">
-			<a href="javascript:;">next</a>
+			<a href="javascript:;">下一页</a>
 		</li>
 		{% endif %}
 	</ul>
