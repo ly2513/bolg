@@ -42,5 +42,5 @@ dev:
   image: /assets/images/
 
 # 选择模式 开发模式还是发布模式。上线之前务必改成pub！
-model: dev
+model: pub
 

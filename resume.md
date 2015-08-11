@@ -2,7 +2,6 @@
 layout: page
 title: 个人简历
 permalink: /resume/
-key: 1437063370
 ---
 
 <div class="read">
@@ -142,5 +141,5 @@ key: 1437063370
 	<a href="http://bestfiveenglish.com">bestfiveenglish.com</a> <span>（HTML，CSS，JavaScript）</span>
 </p>
 
-{% include extends/duoshuo.html %}
+{% include extends/disqus.html %}
 </div>

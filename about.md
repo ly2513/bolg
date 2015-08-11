@@ -2,7 +2,6 @@
 layout: page
 title: 关于
 permalink: /about/
-key: 1437063393
 ---
 <div class="about">
 	<h2>信息：</h2>
@@ -33,5 +32,5 @@ key: 1437063393
 			{{ site.user.desc }}
 		</p>
 	{% endif %}
-	{% include extends/duoshuo.html %}
+	{% include extends/disqus.html %}
 </div>

@@ -2,7 +2,6 @@
 layout: post
 title:  狂刷Git技能
 categories: others
-key: 1439303086
 ---
 
 关于Git的技能，网上的教程多不胜数。关于Git和SVN的异同，网上也是遍地都是。厌倦了SVN的分支的操作之后，我们团队决定做一次变革，以后的所有的项目都使用Git来做为版本控制工具。所以，在这里记录一下常用的Git操作。
