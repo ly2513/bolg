@@ -84,10 +84,10 @@ php -v
 
 ## 参考链接 ##
 
-[php-version]
+[php-version-github]
 
 
-[php-version]: https://github.com/wilmoore/php-version
+[php-version-github]:https://github.com/wilmoore/php-version
 
 {% if site.model == 'pub' %}
 [php-version]:   {{ site.pub.image }}php-version.png 

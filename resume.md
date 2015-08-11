@@ -4,6 +4,7 @@ title: 个人简历
 permalink: /resume/
 key: 1437063370
 ---
+
 <div class="read">
 <h2>语言：</h2>
 <div class='row'>

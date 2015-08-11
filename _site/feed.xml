@@ -5,9 +5,241 @@
     <description>一个90后的个人网站。 IT，php，Java，Python 等等。邮箱：i@searchp.cc</description>
     <link>http://searchp.cc/</link>
     <atom:link href="http://searchp.cc/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 09 Aug 2015 02:05:04 +0800</pubDate>
-    <lastBuildDate>Sun, 09 Aug 2015 02:05:04 +0800</lastBuildDate>
+    <pubDate>Wed, 12 Aug 2015 00:40:42 +0800</pubDate>
+    <lastBuildDate>Wed, 12 Aug 2015 00:40:42 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>狂刷Git技能</title>
+        <description>&lt;p&gt;关于Git的技能，网上的教程多不胜数。关于Git和SVN的异同，网上也是遍地都是。厌倦了SVN的分支的操作之后，我们团队决定做一次变革，以后的所有的项目都使用Git来做为版本控制工具。所以，在这里记录一下常用的Git操作。&lt;/p&gt;
+
+&lt;h2 id=&quot;id-section&quot;&gt;万能命令&lt;/h2&gt;
+
+&lt;p&gt;不解释，在程序员眼里一个命令的help就是万能的。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git help
+git help -a
+git help -g
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;id-section-1&quot;&gt;基础操作&lt;/h2&gt;
+
+&lt;p&gt;初始化git仓库 ，命令：&lt;code&gt;git init&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;添加文件到暂存区，命令：&lt;code&gt;git add README.md&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;提交文件到分支，命令：&lt;code&gt;git commit -m &quot;提交README.md文件&quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;问题1：修改了文件还没有使用&lt;code&gt;git add&lt;/code&gt;提交，怎么还原？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;首先使用&lt;code&gt;git status&lt;/code&gt;查看状态，然后更具状态去选择性操作。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# 查看状态
+git status
+# 命令结果显示
+On branch master
+Changes not staged for commit:
+  (use &quot;git add &amp;lt;file&amp;gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &amp;lt;file&amp;gt;...&quot; to discard changes in working directory)
+
+	modified:   README.md
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;看上面的说明，这个时候你可以选择添加到缓存区，或者选择还原文件。还原的命令为&lt;code&gt;git checkout -- 文件名&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;下面我们还原文件。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git checkout -- README.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个时候，文件README.md就恢复到了修改前的状态。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;问题2：修改了文件已经使用&lt;code&gt;git add&lt;/code&gt;添加，但是还没有使用&lt;code&gt;git commit&lt;/code&gt;提交怎么还原？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;还是和刚才一样，我们首先看一下&lt;code&gt;git add&lt;/code&gt;了之后的&lt;code&gt;git status&lt;/code&gt;。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# 查看状态
+git status
+# 命令结果显示
+On branch master
+Changes to be committed:
+  (use &quot;git reset HEAD &amp;lt;file&amp;gt;...&quot; to unstage)
+
+	modified:   README.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;看上面的说明，这个时候你可以选择&lt;code&gt;git reset HEAD 文件名&lt;/code&gt;的方式进行文件的还原。或者提交到版本库里面。&lt;/p&gt;
+
+&lt;p&gt;下面我们还原文件。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git reset HEAD README.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个时候，文件README.md也同样恢复到了修改前的状态。&lt;/p&gt;
+
+&lt;p&gt;看到这里，动动脚趾头我们就会知道问题3是什么了。问题3如下。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;问题3：修改了文件已经使用&lt;code&gt;git add&lt;/code&gt;添加到暂存区，并且还是用了&lt;code&gt;git commit&lt;/code&gt;提交到了版本库之中，我们该怎么还原？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;还是同样的办法。看看已经修改过的文件经过了&lt;code&gt;git add&lt;/code&gt;, &lt;code&gt;git commit&lt;/code&gt;之后的&lt;code&gt;git status&lt;/code&gt;是什么。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# 查看状态
+git status
+# 命令结果显示
+On branch master
+nothing to commit, working directory clean
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;看到上面的提示是不是大吃一惊，竟然说工作区很干净，没有任何内容需要提交。并且没有任何回退的操作的提示。这个时候不要急，我们要知道任何东西都会留下点痕迹的。我们的解决思路是这样的：找到提交的日志，通过提交的日志进行恢复。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 查看日志
+git log
+# 命令结果显示。 注意：具体内容依据你的客户端和提交的注释。
+commit a2bba85f5bcdfca4186a03c27e68cb06e244951f
+Author: searchpcc &amp;lt;searchpcc@163.com&amp;gt;
+Date:   Tue Aug 11 22:58:41 2015 +0800
+
+    第二次提交README.md
+
+commit 6c87b3f956066d418b969f7e4429d93aedec73c2
+Author: searchpcc &amp;lt;searchpcc@163.com&amp;gt;
+Date:   Tue Aug 11 22:58:18 2015 +0800
+
+    第一次提交README.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们需要回退到第一次提交README.md后的状态。我们可以使用 &lt;code&gt;git reset --hard commitId(前几位就行)&lt;/code&gt;。当然，事实上有了这条命令你可以恢复到之前的任何一个commit。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# 命令
+git reset --hard 6c87b3f95
+# 显示
+HEAD is now at 6c87b3f 第一次提交README.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;有的人，特别是初学版本控制的人以为到这里问题系列就结束了。未add的回退，add了为commit的回退，add了且commit了的回退。事实上还有一种情况就是你回到了过去，如果再回来呢？比如我从版本三回到了版本一，然后发现版本一不是我想回到的地方，我该怎么重新回到版本三呢？&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;问题4：修改了文件已经使用git add 提交，并且还是用了&lt;code&gt;git commit&lt;/code&gt;提交到了版本库之中，我们该怎么还原？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;解决的思路和问题3类似，查看日志，然后会退到相应的版本。但是，注意这次查看日志的方式不太一样，使用的是&lt;code&gt;git reflog&lt;/code&gt;。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# 查看日志
+git reflog
+# 命令结果显示。 注意：具体内容依据你的客户端和提交的注释。
+6c87b3f HEAD@{0}: reset: moving to 6c87b3f956066d418b969f7e4429d93aedec73c2
+a2bba85 HEAD@{1}: commit: 第二次提交README.md
+6c87b3f HEAD@{2}: commit (initial): 第一次提交README.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;看到版本ID，然后进行回退。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# 命令
+get reset --hard a2bba85
+# 显示
+HEAD is now at a2bba85 第二次提交README.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;到这里，上面所有的功能其实SVN都是有的，并且实现的难度都差不多。可能有些人有些许着急了，这不是Git的一篇狂刷技能么？怎么还不涉及点干货呢？下面就来干货。还是沿袭之前的问问题的方式。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;问题5：如何创建并切换分支？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这个问题比较简单。如果想要一条命令实现的话直接输入下面这条命令就可以创建并且切换到dev分支。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 创建并切换
+git checkout -b dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果想多体验一下敲键盘的快感的话。也可以使用如下两条命令。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 创建
+git branch dev
+# 切换
+git  checkout dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;补充几个：&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git branch&lt;/code&gt; 查看当前分支。其那面有&lt;code&gt;*&lt;/code&gt;的代表当前分支。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git branch -d&lt;/code&gt;删除分支。注意删除分支是有一些条件的哦。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git checkout 分支名称&lt;/code&gt;切换分支。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;问题6：如何合并分支并且解决冲突呢？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这个问题最关键。其实SVN最让人诟病的有两点。一点是集中式处理方式而不是分布式，另一点就是无论是合并还是创建分支的速度都是巨慢。&lt;/p&gt;
+
+&lt;p&gt;合并分支。比如把dev合并到master之上，你需要先把dev的分支的内容add并且commit，然后切换到master。在master之上使用&lt;code&gt;git merge dev&lt;/code&gt;，如果没有冲突就算合并好了。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 创建并切换分支
+git checkout -b dev
+# 修改分支上的文件
+......
+# 切回主分支
+git checkout master
+# 合并分支
+git merge dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;解决冲突的唯一的办法就是信息的看冲突的地方。然后删除，修改……其他的没有捷径。下面看一个简单地冲突吧。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# 合并爆冲突
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用&lt;code&gt;git diff&lt;/code&gt;比较文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;diff --cc README.md
+index fdd5d55,9826dcc..0000000
+--- a/README.md
++++ b/README.md
+@@@ -1,2 -1,2 +1,6 @@@
+++&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD
+ +134234hello world
+++=======
++ 112212hello world
+++&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; dev
+  hello world
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面的结果很显然是你当前改的地方和dev冲突了一行。然后这行的内容是……&lt;/p&gt;
+
+&lt;h2 id=&quot;id-section-2&quot;&gt;远程操作&lt;/h2&gt;
+
+&lt;p&gt;远程操作就是在前面的操作结束之后把本地的代码push到远程服务器端。使用的命令是&lt;code&gt;git push&lt;/code&gt;。当然，前提是你先得连接到服务器。比如先从服务器&lt;code&gt;git clone&lt;/code&gt;一份代码下来。&lt;/p&gt;
+
+&lt;p&gt;常用的命令有：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone 地址
+# 推送到远程主干
+git push origin master
+等等
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;id-section-3&quot;&gt;小结&lt;/h2&gt;
+
+&lt;p&gt;有了SVN的基础学习Git也就很容易了。只要明白分布式的特点就OK了。其他的命令看帮助，或者Google It。最后mac上推荐一个工具&lt;a href=&quot;https://www.sourcetreeapp.com/&quot;&gt;SourceTree&lt;/a&gt;，用了的都说好。&lt;/p&gt;
+
+&lt;h2 id=&quot;id-section-4&quot;&gt;致谢&lt;/h2&gt;
+
+&lt;p&gt;感谢下面这些站点的作者，这些站点给了我很多思路。&lt;/p&gt;
+
+&lt;p&gt;网站1： &lt;a href=&quot;http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000&quot;&gt;Git教程&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;网站2： &lt;a href=&quot;https://www.github.com&quot;&gt;Github&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 11 Aug 2015 00:00:00 +0800</pubDate>
+        <link>http://searchp.cc/20150811.html</link>
+        <guid isPermaLink="true">http://searchp.cc/20150811.html</guid>
+        
+        
+        <category>others</category>
+        
+      </item>
     
       <item>
         <title>iterm2之ssh配置</title>
@@ -135,7 +367,7 @@ php -v
 
 &lt;h2 id=&quot;id-section&quot;&gt;参考链接&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;/assets/images/php-version.png&quot;&gt;php-version&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/wilmoore/php-version&quot;&gt;php-version-github&lt;/a&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Wed, 22 Jul 2015 00:00:00 +0800</pubDate>
