@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  提升Redis的入库速度
+title:  提升数据入Redis的速度
 categories: [php]
 ---
 
