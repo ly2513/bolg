@@ -5,12 +5,12 @@
     <description>一个90后的个人网站。 IT，php，Java，Python 等等。邮箱：i@searchp.cc</description>
     <link>http://searchp.cc/</link>
     <atom:link href="http://searchp.cc/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 14 Aug 2015 18:25:01 +0800</pubDate>
-    <lastBuildDate>Fri, 14 Aug 2015 18:25:01 +0800</lastBuildDate>
+    <pubDate>Fri, 14 Aug 2015 18:40:46 +0800</pubDate>
+    <lastBuildDate>Fri, 14 Aug 2015 18:40:46 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
-        <title>提升Redis的入库速度</title>
+        <title>提升数据入Redis的速度</title>
         <description>&lt;p&gt;最近，踩过很多的坑。自己踩过，和团队一起也踩过。这里记录一个小坑，如果大家遇到了应该也会有共鸣的。&lt;/p&gt;
 
 &lt;h2 id=&quot;id-section&quot;&gt;遇到的问题&lt;/h2&gt;
@@ -166,6 +166,8 @@ Fatal error: require_once(): Failed opening required &#39;test.php&#39;......
 &lt;h2 id=&quot;id-section-2&quot;&gt;参考链接&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/2418473/when-should-i-use-require-once-vs-include&quot;&gt;stackoverflow&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;（全文完）&lt;/p&gt;
 
 </description>
         <pubDate>Wed, 12 Aug 2015 00:00:00 +0800</pubDate>
@@ -399,6 +401,8 @@ git push origin master
 
 &lt;p&gt;网站2： &lt;a href=&quot;https://www.github.com&quot;&gt;Github&lt;/a&gt;&lt;/p&gt;
 
+&lt;p&gt;（全文完）&lt;/p&gt;
+
 </description>
         <pubDate>Tue, 11 Aug 2015 00:00:00 +0800</pubDate>
         <link>http://searchp.cc/20150811.html</link>
@@ -451,6 +455,8 @@ interact
 &lt;h2 id=&quot;id-section-1&quot;&gt;写在最后&lt;/h2&gt;
 
 &lt;p&gt;因为我目前所在的环境远程服务器众多，所以为了方便远程登陆服务器就网上找了一下并且结合自己的理解采用了这样一个方式进行ssh登陆记住用户信息的处理。事实上你根本不需要使用profiles，你直接在终端输入一下ssh111试试，是不是直接登陆上了服务器呢？profiles在这里只是能够记录更多的信息而已。由此可见，在Linux和Unix上只要支持Expect，是不是就可以了呢？&lt;/p&gt;
+
+&lt;p&gt;（全文完）&lt;/p&gt;
 
 </description>
         <pubDate>Thu, 23 Jul 2015 00:00:00 +0800</pubDate>
@@ -536,6 +542,8 @@ php -v
 &lt;h2 id=&quot;id-section&quot;&gt;参考链接&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/wilmoore/php-version&quot;&gt;php-version-github&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;（全文完）&lt;/p&gt;
 
 </description>
         <pubDate>Wed, 22 Jul 2015 00:00:00 +0800</pubDate>
@@ -662,6 +670,8 @@ $this-&amp;gt;ci_smarty-&amp;gt;display(&#39;test/test.tpl&#39;);
 
 &lt;p&gt;&lt;a href=&quot;http://www.coolphptools.com/codeigniter-smarty&quot;&gt;CodeIgniter+Smarty - Perfect Together&lt;/a&gt;&lt;/p&gt;
 
+&lt;p&gt;（全文完）&lt;/p&gt;
+
 </description>
         <pubDate>Tue, 09 Jun 2015 00:00:00 +0800</pubDate>
         <link>http://searchp.cc/20150609.html</link>
@@ -703,6 +713,8 @@ $this-&amp;gt;ci_smarty-&amp;gt;display(&#39;test/test.tpl&#39;);
 &lt;h2 id=&quot;id-section-3&quot;&gt;致谢&lt;/h2&gt;
 
 &lt;p&gt;非常感谢&lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;jekyll&lt;/a&gt;开源静态博客，感谢&lt;a href=&quot;https://github.com&quot;&gt;github&lt;/a&gt;免费代码托管平台，感谢&lt;a href=&quot;http://www.qiniu.com/&quot;&gt;七牛&lt;/a&gt;数据存储，感谢&lt;a href=&quot;http://getbootstrap.com/&quot;&gt;bootstrap&lt;/a&gt;和所有的无私奉献的人们，正因为有你们这个世界才如此的丰富多彩。我也会和你们类似的方式来回报这个多彩的世界。&lt;/p&gt;
+
+&lt;p&gt;（全文完）&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 30 May 2015 00:00:00 +0800</pubDate>

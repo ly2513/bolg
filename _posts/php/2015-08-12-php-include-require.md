@@ -86,4 +86,7 @@ The require_once() statement is identical to require() except PHP will check if 
 
 [stackoverflow]
 
+（全文完）
+
 [stackoverflow]:http://stackoverflow.com/questions/2418473/when-should-i-use-require-once-vs-include
+

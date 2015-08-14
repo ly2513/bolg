@@ -85,6 +85,7 @@ php -v
 
 [php-version-github]
 
+（全文完）
 
 [php-version-github]:https://github.com/wilmoore/php-version
 
@@ -93,6 +94,8 @@ php -v
 {% else %}
 [php-version]:   {{ site.dev.image }}php-version.png 
 {% endif %}
+
+
 
 
 
