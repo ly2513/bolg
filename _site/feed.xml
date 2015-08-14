@@ -5,9 +5,177 @@
     <description>一个90后的个人网站。 IT，php，Java，Python 等等。邮箱：i@searchp.cc</description>
     <link>http://searchp.cc/</link>
     <atom:link href="http://searchp.cc/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 12 Aug 2015 00:43:15 +0800</pubDate>
-    <lastBuildDate>Wed, 12 Aug 2015 00:43:15 +0800</lastBuildDate>
+    <pubDate>Fri, 14 Aug 2015 18:25:01 +0800</pubDate>
+    <lastBuildDate>Fri, 14 Aug 2015 18:25:01 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>提升Redis的入库速度</title>
+        <description>&lt;p&gt;最近，踩过很多的坑。自己踩过，和团队一起也踩过。这里记录一个小坑，如果大家遇到了应该也会有共鸣的。&lt;/p&gt;
+
+&lt;h2 id=&quot;id-section&quot;&gt;遇到的问题&lt;/h2&gt;
+
+&lt;p&gt;前些日子有一些日志需要处理。日志文件的大写都是10G+，数亿条的。刚开始我解决的思路是这样的：首先用awk+sed将日志清洗一遍，然后用PHP或者Python将日志逐行读取，接着逐行按照特定的格式(key-value或者hash)的格式存入到redis（主从或者集群）之中。&lt;/p&gt;
+
+&lt;p&gt;可是，后面一试效率吓死人。我用的是Predis连接集群的方式，存入的格式是hash格式。因为和服务器性能和日志的长度有关系，这里我也没法给出一个时间来。但是，如果按照这个进度来，我们肯定是接受不了的，因为我们的数据是需要在短期内就被用作另一个系统的。&lt;/p&gt;
+
+&lt;h2 id=&quot;id-section-1&quot;&gt;解决的办法&lt;/h2&gt;
+
+&lt;p&gt;我们首先想到文件的读取方式是不是有问题。&lt;code&gt;排除了&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;然后我想是不是语言的性能的问题。用Python的方式实现了一遍，提升了一点点，但是效果不是很明显。&lt;code&gt;排除了&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;后面团队中有经验的同事，想到了一种Redis事务的方法。&lt;code&gt;采用了&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;php Predis使用的方式&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Predis是PHP连接集群的一个类库。到目前为止大概是PHP使用redis3.0 cluster唯一的方式。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;// ......省略引入类库代码
+Predis\Autoloader::register();
+$client = new Predis\Client(array(&#39;tcp://192.168.0.8:6379&#39;,&#39;tcp://192.168.0.8:6380,array(&#39;cluster&#39;=&amp;gt;&#39;redis&#39;));
+// 这句话很重要。获取集群的map表
+$client-&amp;gt;set(&#39;fuck&#39;, &#39;you&#39;);
+$redis = $client-&amp;gt;pipeline();
+$count = 0;
+$perNum = 0;
+if ($handle) {
+    while(($buffer = fgets($handle, 4096)) !== false) {
+            $aa = trim($buffer[0]);
+            $bb = trim($buffer[1]);
+            try {
+                $redis-&amp;gt;setnx($aa, $bb);
+                $count++;
+                if($count % 1000 == 0) {
+                    $redis-&amp;gt;execute();
+                    // 这两句也很重要。注销对象，并且创建新的空对象。
+                    unset($redis);
+                    $redis = $client-&amp;gt;pipeline();
+                    $perNum = 0;
+                }
+                $perNum++;
+            } catch(Exception $e) {
+                 continue;
+            }
+        }
+    }
+    // 处理文件末尾不足1000的部分。
+   if($perNum &amp;gt; 0) {
+        $redis-&amp;gt;execute();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;php redis使用事务的方式&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;php redis处理事务的方式比较简单。因为网上使用这种方式都比较多。主要的函数就两个。multi() 和 exec()。原理是先打包，然后一次性执行。实现的方式和上述方式相仿。这里不赘述，注意函数名称的变化就好。&lt;/p&gt;
+
+&lt;h2 id=&quot;id-section-2&quot;&gt;总结&lt;/h2&gt;
+
+&lt;p&gt;redis3.0 cluster的坑很多。连接redis的phpredis和Predis的坑也很多。另外:目前redis3.0真的不是很稳定，能不用集群的方式用代理的方式替代就用稳定的代理方式吧。我们私下也在写自己的代理，尽管这周集群运转比较正常。&lt;/p&gt;
+
+&lt;p&gt;那天看到亚一程在微博吐槽phpredis源码，并且正在重构。后面一想：同样是人差距还真的挺大的。&lt;/p&gt;
+
+&lt;p&gt;（全文完）&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 13 Aug 2015 00:00:00 +0800</pubDate>
+        <link>http://searchp.cc/20150813.html</link>
+        <guid isPermaLink="true">http://searchp.cc/20150813.html</guid>
+        
+        
+        <category>php</category>
+        
+      </item>
+    
+      <item>
+        <title>PHP中的include和require详解</title>
+        <description>&lt;p&gt;接触过PHP的都知道PHP引入文件的方式有两个类型：include类型和require类型。这两种类型又对应这四种方法include_once()和require_one()。这篇文章主要介绍他们的异同。&lt;/p&gt;
+
+&lt;h2 id=&quot;id-requireinlcude&quot;&gt;require和inlcude原理&lt;/h2&gt;
+
+&lt;p&gt;require和include对文件的处理方式不一样。include引入文件每次都会对文件进行读取和评估，而require只是把文件内容读取到引入的位置。当然，include_once()和reqire_once()同理。&lt;/p&gt;
+
+&lt;p&gt;require_once() 和 include_once()则保证一个脚本内对同一个文件的包含只进行一次。&lt;/p&gt;
+
+&lt;h2 id=&quot;id-section&quot;&gt;实验：当引用文件不存在时&lt;/h2&gt;
+
+&lt;p&gt;include和include_once在引用不存在的文件的时候会打开文件失败的警告。而require和require_once则会报打开文件的错误。具体的实验如下。前提：test.php不存在。&lt;/p&gt;
+
+&lt;p&gt;注意：我测试环境是MAC OS，PHP的版本为5.6.11。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;include测试&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;// 测试脚本
+&amp;lt;?php 
+	include &quot;test.php&quot;;
+	echo &quot;hello world&quot;;
+?&amp;gt;
+// 输出结果
+Warning: include(): Failed opening &#39;test.php&#39; for inclusion......
+hello world
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;include_once测试&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;// 测试脚本
+&amp;lt;?php
+	include_once &quot;test.php&quot;;
+	echo &quot;hello world&quot;;
+?&amp;gt;
+// 输出结果
+Warning: include_once(): Failed opening &#39;test.php&#39; for inclusion......
+hello world
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;require测试&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;// 测试脚本
+&amp;lt;?php  
+	require &quot;test.php&quot;;
+	echo &quot;hello world&quot;;
+?&amp;gt;
+// 输出结果
+Fatal error: require(): Failed opening required &#39;test.php&#39;......
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;require_once测试&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;// 测试脚本
+&amp;lt;?php  
+	require_once &quot;test.php&quot;;
+	echo &quot;hello world&quot;;
+?&amp;gt;
+// 输出结果
+Fatal error: require_once(): Failed opening required &#39;test.php&#39;......
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;结论&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;引用文件不存在的时候include报警告，脚本继续执行，require报错误，脚本终止执行。&lt;/p&gt;
+
+&lt;h2 id=&quot;id-section-1&quot;&gt;结论：我们用什么？&lt;/h2&gt;
+
+&lt;p&gt;这里先贴出一下&lt;code&gt;stackoverflow&lt;/code&gt;牛人的回答。&lt;/p&gt;
+
+&lt;p&gt;The require() function is identical to include(), except that it handles errors differently. If an error occurs, the include() function generates a warning, but the script will continue execution. The require() generates a fatal error, and the script will stop.&lt;/p&gt;
+
+&lt;p&gt;The require_once() statement is identical to require() except PHP will check if the file has already been included, and if so, not include (require) it again.&lt;/p&gt;
+
+&lt;p&gt;所以用什么，第一看你是否在文件不存在的时候直接终止程序的执行，如果是用require系列否则用include系列。就是这么简单。而在性能上几乎没有什么差别。&lt;/p&gt;
+
+&lt;h2 id=&quot;id-section-2&quot;&gt;参考链接&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/2418473/when-should-i-use-require-once-vs-include&quot;&gt;stackoverflow&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 12 Aug 2015 00:00:00 +0800</pubDate>
+        <link>http://searchp.cc/20150812.html</link>
+        <guid isPermaLink="true">http://searchp.cc/20150812.html</guid>
+        
+        
+        <category>php</category>
+        
+      </item>
     
       <item>
         <title>狂刷Git技能</title>
@@ -274,7 +442,7 @@ interact
 
 &lt;p&gt;利用 Command + o 快捷键打开Profiles功能，然后选择Edit Profiles…，接着新建自己的profiles。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/profiles.png&quot; alt=&quot;编辑profiles&quot; title=&quot;编辑profiles&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xjddm.com1.z0.glb.clouddn.com/profiles.png&quot; alt=&quot;编辑profiles&quot; title=&quot;编辑profiles&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;id-section&quot;&gt;进行登录操作&lt;/h2&gt;
 
@@ -323,7 +491,7 @@ brew install php70
 
 &lt;h2 id=&quot;id-php-version&quot;&gt;安装php-version&lt;/h2&gt;
 
-&lt;p&gt;安装&lt;a href=&quot;/assets/images/php-version.png&quot;&gt;php-version&lt;/a&gt;进行PHP版本的管理。安装的方法如下:&lt;/p&gt;
+&lt;p&gt;安装&lt;a href=&quot;http://7xjddm.com1.z0.glb.clouddn.com/php-version.png&quot;&gt;php-version&lt;/a&gt;进行PHP版本的管理。安装的方法如下:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;brew tap homebrew/dupes
 brew tap josegonzalez/homebrew-php
@@ -347,7 +515,7 @@ php-version 7.0.0beta2
 php -v
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/php-version.png&quot; alt=&quot;php-version显示&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xjddm.com1.z0.glb.clouddn.com/php-version.png&quot; alt=&quot;php-version显示&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;id-apache&quot;&gt;配置Apache&lt;/h2&gt;
 
