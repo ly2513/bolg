@@ -5,9 +5,77 @@
     <description>一个90后的个人网站。 IT，php，Java，Python 等等。邮箱：i@searchp.cc</description>
     <link>http://searchp.cc/</link>
     <atom:link href="http://searchp.cc/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 14 Aug 2015 18:40:46 +0800</pubDate>
-    <lastBuildDate>Fri, 14 Aug 2015 18:40:46 +0800</lastBuildDate>
+    <pubDate>Fri, 21 Aug 2015 16:40:45 +0800</pubDate>
+    <lastBuildDate>Fri, 21 Aug 2015 16:40:45 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>chrome插件之vimium</title>
+        <description>&lt;p&gt;我的感言：”这是一款让自己用了就回不去的插件”。&lt;/p&gt;
+
+&lt;p&gt;首先，自己到chrome的应用商店搜索&lt;a href=&quot;https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=zh-CN&quot;&gt;vimium&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;然后，点击进行安装。&lt;/p&gt;
+
+&lt;p&gt;备注：如果不能打开应用商店，自己想想办法吧。&lt;/p&gt;
+
+&lt;h2 id=&quot;id-vimium&quot;&gt;Vimium能做什么?&lt;/h2&gt;
+
+&lt;p&gt;当你安装完Vimium之后，你就可以像使用vim的命令模式一样使用快捷键操作chrome浏览器。如果说世界上的编辑器有几种一个略叼的回答是三种：vim,emacs和其他编辑器。如果vim党chrome必不可少的插件之一是什么？一个略叼的回答是：Vimium。&lt;/p&gt;
+
+&lt;h2 id=&quot;id-vimium-1&quot;&gt;Vimium怎么操作?&lt;/h2&gt;
+
+&lt;p&gt;这个时候你可以使用如下的命令。注意区分大小写哦。&lt;/p&gt;
+
+&lt;p&gt;G: 大写的G，也就是shift+g，就可以跑到页面的最低端。&lt;/p&gt;
+
+&lt;p&gt;gg: 就可以跑到页面的最顶端。&lt;/p&gt;
+
+&lt;p&gt;k,j,h,l: 控制页面的上下左右。当然如果你嫌上线移动幅度太小的话可以使用d,u。&lt;/p&gt;
+
+&lt;p&gt;x: 关闭窗口。&lt;/p&gt;
+
+&lt;p&gt;X: 打开刚才被关闭的窗口。&lt;/p&gt;
+
+&lt;p&gt;f/F: 查找链接的锚点。然后输入相应的快捷字母进行跳转。如果不想跳转则esc返回。&lt;/p&gt;
+
+&lt;p&gt;J,K: 进行Tab的切换。&lt;/p&gt;
+
+&lt;p&gt;o/O: 呼出输入框，搜索历史记录。&lt;/p&gt;
+
+&lt;p&gt;r: 刷新页面。&lt;/p&gt;
+
+&lt;p&gt;H: 页面后退。&lt;/p&gt;
+
+&lt;p&gt;L: 页面前进。&lt;/p&gt;
+
+&lt;p&gt;yy,p/P: 复制当期的url。p在当前页面粘贴。P在新的窗口粘贴。&lt;/p&gt;
+
+&lt;p&gt;/: 启用搜索模式。&lt;/p&gt;
+
+&lt;p&gt;……&lt;/p&gt;
+
+&lt;p&gt;最后放一个绝招：? 显示所有的快捷键！&lt;/p&gt;
+
+&lt;h2 id=&quot;id-vimium-2&quot;&gt;Vimium命令大全&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/vimium_doc.png&quot; alt=&quot;vimium_doc&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;id-section&quot;&gt;总结&lt;/h2&gt;
+
+&lt;p&gt;工具虽好，但也不要太过于迷恋。&lt;/p&gt;
+
+&lt;p&gt;(全文完)&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 20 Aug 2015 00:00:00 +0800</pubDate>
+        <link>http://searchp.cc/20150820.html</link>
+        <guid isPermaLink="true">http://searchp.cc/20150820.html</guid>
+        
+        
+        <category>others</category>
+        
+      </item>
     
       <item>
         <title>提升数据入Redis的速度</title>
@@ -82,97 +150,6 @@ if ($handle) {
         <pubDate>Thu, 13 Aug 2015 00:00:00 +0800</pubDate>
         <link>http://searchp.cc/20150813.html</link>
         <guid isPermaLink="true">http://searchp.cc/20150813.html</guid>
-        
-        
-        <category>php</category>
-        
-      </item>
-    
-      <item>
-        <title>PHP中的include和require详解</title>
-        <description>&lt;p&gt;接触过PHP的都知道PHP引入文件的方式有两个类型：include类型和require类型。这两种类型又对应这四种方法include_once()和require_one()。这篇文章主要介绍他们的异同。&lt;/p&gt;
-
-&lt;h2 id=&quot;id-requireinlcude&quot;&gt;require和inlcude原理&lt;/h2&gt;
-
-&lt;p&gt;require和include对文件的处理方式不一样。include引入文件每次都会对文件进行读取和评估，而require只是把文件内容读取到引入的位置。当然，include_once()和reqire_once()同理。&lt;/p&gt;
-
-&lt;p&gt;require_once() 和 include_once()则保证一个脚本内对同一个文件的包含只进行一次。&lt;/p&gt;
-
-&lt;h2 id=&quot;id-section&quot;&gt;实验：当引用文件不存在时&lt;/h2&gt;
-
-&lt;p&gt;include和include_once在引用不存在的文件的时候会打开文件失败的警告。而require和require_once则会报打开文件的错误。具体的实验如下。前提：test.php不存在。&lt;/p&gt;
-
-&lt;p&gt;注意：我测试环境是MAC OS，PHP的版本为5.6.11。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;include测试&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;// 测试脚本
-&amp;lt;?php 
-	include &quot;test.php&quot;;
-	echo &quot;hello world&quot;;
-?&amp;gt;
-// 输出结果
-Warning: include(): Failed opening &#39;test.php&#39; for inclusion......
-hello world
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;include_once测试&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;// 测试脚本
-&amp;lt;?php
-	include_once &quot;test.php&quot;;
-	echo &quot;hello world&quot;;
-?&amp;gt;
-// 输出结果
-Warning: include_once(): Failed opening &#39;test.php&#39; for inclusion......
-hello world
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;require测试&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;// 测试脚本
-&amp;lt;?php  
-	require &quot;test.php&quot;;
-	echo &quot;hello world&quot;;
-?&amp;gt;
-// 输出结果
-Fatal error: require(): Failed opening required &#39;test.php&#39;......
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;require_once测试&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;// 测试脚本
-&amp;lt;?php  
-	require_once &quot;test.php&quot;;
-	echo &quot;hello world&quot;;
-?&amp;gt;
-// 输出结果
-Fatal error: require_once(): Failed opening required &#39;test.php&#39;......
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;结论&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;引用文件不存在的时候include报警告，脚本继续执行，require报错误，脚本终止执行。&lt;/p&gt;
-
-&lt;h2 id=&quot;id-section-1&quot;&gt;结论：我们用什么？&lt;/h2&gt;
-
-&lt;p&gt;这里先贴出一下&lt;code&gt;stackoverflow&lt;/code&gt;牛人的回答。&lt;/p&gt;
-
-&lt;p&gt;The require() function is identical to include(), except that it handles errors differently. If an error occurs, the include() function generates a warning, but the script will continue execution. The require() generates a fatal error, and the script will stop.&lt;/p&gt;
-
-&lt;p&gt;The require_once() statement is identical to require() except PHP will check if the file has already been included, and if so, not include (require) it again.&lt;/p&gt;
-
-&lt;p&gt;所以用什么，第一看你是否在文件不存在的时候直接终止程序的执行，如果是用require系列否则用include系列。就是这么简单。而在性能上几乎没有什么差别。&lt;/p&gt;
-
-&lt;h2 id=&quot;id-section-2&quot;&gt;参考链接&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/2418473/when-should-i-use-require-once-vs-include&quot;&gt;stackoverflow&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;（全文完）&lt;/p&gt;
-
-</description>
-        <pubDate>Wed, 12 Aug 2015 00:00:00 +0800</pubDate>
-        <link>http://searchp.cc/20150812.html</link>
-        <guid isPermaLink="true">http://searchp.cc/20150812.html</guid>
         
         
         <category>php</category>
@@ -446,7 +423,7 @@ interact
 
 &lt;p&gt;利用 Command + o 快捷键打开Profiles功能，然后选择Edit Profiles…，接着新建自己的profiles。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xjddm.com1.z0.glb.clouddn.com/profiles.png&quot; alt=&quot;编辑profiles&quot; title=&quot;编辑profiles&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/profiles.png&quot; alt=&quot;编辑profiles&quot; title=&quot;编辑profiles&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;id-section&quot;&gt;进行登录操作&lt;/h2&gt;
 
@@ -497,7 +474,7 @@ brew install php70
 
 &lt;h2 id=&quot;id-php-version&quot;&gt;安装php-version&lt;/h2&gt;
 
-&lt;p&gt;安装&lt;a href=&quot;http://7xjddm.com1.z0.glb.clouddn.com/php-version.png&quot;&gt;php-version&lt;/a&gt;进行PHP版本的管理。安装的方法如下:&lt;/p&gt;
+&lt;p&gt;安装&lt;a href=&quot;/assets/images/php-version.png&quot;&gt;php-version&lt;/a&gt;进行PHP版本的管理。安装的方法如下:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;brew tap homebrew/dupes
 brew tap josegonzalez/homebrew-php
@@ -521,7 +498,7 @@ php-version 7.0.0beta2
 php -v
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xjddm.com1.z0.glb.clouddn.com/php-version.png&quot; alt=&quot;php-version显示&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/php-version.png&quot; alt=&quot;php-version显示&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;id-apache&quot;&gt;配置Apache&lt;/h2&gt;
 
