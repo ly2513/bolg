@@ -5,8 +5,8 @@
     <description>一个90后的个人网站。 IT，php，Java，Python 等等。邮箱：i@searchp.cc</description>
     <link>http://searchp.cc/</link>
     <atom:link href="http://searchp.cc/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 21 Aug 2015 16:40:45 +0800</pubDate>
-    <lastBuildDate>Fri, 21 Aug 2015 16:40:45 +0800</lastBuildDate>
+    <pubDate>Mon, 24 Aug 2015 00:55:51 +0800</pubDate>
+    <lastBuildDate>Mon, 24 Aug 2015 00:55:51 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -59,7 +59,7 @@
 
 &lt;h2 id=&quot;id-vimium-2&quot;&gt;Vimium命令大全&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/vimium_doc.png&quot; alt=&quot;vimium_doc&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xjddm.com1.z0.glb.clouddn.com/vimium_doc.png&quot; alt=&quot;vimium_doc&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;id-section&quot;&gt;总结&lt;/h2&gt;
 
@@ -423,7 +423,7 @@ interact
 
 &lt;p&gt;利用 Command + o 快捷键打开Profiles功能，然后选择Edit Profiles…，接着新建自己的profiles。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/profiles.png&quot; alt=&quot;编辑profiles&quot; title=&quot;编辑profiles&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xjddm.com1.z0.glb.clouddn.com/profiles.png&quot; alt=&quot;编辑profiles&quot; title=&quot;编辑profiles&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;id-section&quot;&gt;进行登录操作&lt;/h2&gt;
 
@@ -474,7 +474,7 @@ brew install php70
 
 &lt;h2 id=&quot;id-php-version&quot;&gt;安装php-version&lt;/h2&gt;
 
-&lt;p&gt;安装&lt;a href=&quot;/assets/images/php-version.png&quot;&gt;php-version&lt;/a&gt;进行PHP版本的管理。安装的方法如下:&lt;/p&gt;
+&lt;p&gt;安装&lt;a href=&quot;http://7xjddm.com1.z0.glb.clouddn.com/php-version.png&quot;&gt;php-version&lt;/a&gt;进行PHP版本的管理。安装的方法如下:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;brew tap homebrew/dupes
 brew tap josegonzalez/homebrew-php
@@ -498,7 +498,7 @@ php-version 7.0.0beta2
 php -v
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/php-version.png&quot; alt=&quot;php-version显示&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xjddm.com1.z0.glb.clouddn.com/php-version.png&quot; alt=&quot;php-version显示&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;id-apache&quot;&gt;配置Apache&lt;/h2&gt;
 

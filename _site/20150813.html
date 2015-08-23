@@ -6,8 +6,8 @@
 	<!-- Enable responsive viewport -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="baidu-site-verification" content="2XMQAJIGe2" />
-	<title>Hello World</title>
-	<meta name="description" content="折腾。还记得之前折腾过CSDN，折腾过cnblogs，折腾过点点，折腾过wordpress，折腾过blogspot等等。现在到了折腾jekyll。jekyll我总共换过四次模板，从最原始的直接搬过来别人的模板，到用原生的模板，再到自己写简陋的模板，再到现在自己写的认为很满意的模板。自己感觉到了自己在审美和专业能力...">
+	<title>提升数据入Redis的速度</title>
+	<meta name="description" content="最近，踩过很多的坑。自己踩过，和团队一起也踩过。这里记录一个小坑，如果大家遇到了应该也会有共鸣的。">
 	
 		<link rel="stylesheet" href="http://7xjddt.com1.z0.glb.clouddn.com/monokai.css">
 		<link rel="stylesheet" href="http://7xjddt.com1.z0.glb.clouddn.com/bootstrap.min.css">
@@ -74,47 +74,82 @@
 	<!--文章标题和说明-->
 	<header>
 		<!--文章名称-->
-		<h1 class="post-title">Hello World</h1>
+		<h1 class="post-title">提升数据入Redis的速度</h1>
 		<!--文章描述，时间和分类-->
 		<p class="desc">
 			<i class="fa fa-calendar"></i>
-			2015/05/30 &nbsp;&nbsp;
+			2015/08/13 &nbsp;&nbsp;
 			<i class="fa fa-folder-open-o fa-fw"></i>
-			<a href="/category/">others </a>
+			<a href="/category/">php </a>
 		</p>
 	</header>
 
 	<!--文章内容-->
 	<article class="post-content">
-		<p>折腾。还记得之前折腾过<code>CSDN</code>，折腾过<code>cnblogs</code>，折腾过<code>点点</code>，折腾过<code>wordpress</code>，折腾过<code>blogspot</code>等等。现在到了折腾<code>jekyll</code>。<code>jekyll</code>我总共换过四次模板，从最原始的直接搬过来别人的模板，到用原生的模板，再到自己写简陋的模板，再到现在自己写的认为很满意的模板。自己感觉到了自己在审美和专业能力方面的提升。</p>
+		<p>最近，踩过很多的坑。自己踩过，和团队一起也踩过。这里记录一个小坑，如果大家遇到了应该也会有共鸣的。</p>
 
-<h2 id="id-section">博客声明</h2>
+<h2 id="id-section">遇到的问题</h2>
 
-<p>本博客，是一个master，不出意外在未来的很长一段时间我都不会改变它的样子，只会不断的增加它的内容（文章）。因为在我看来，它已经完全符合我最理想的博客的样子。肯定读者尊重文章版权，如有引用或者转载务必注明出处。我认为一个合格的人应该注重这些。</p>
+<p>前些日子有一些日志需要处理。日志文件的大写都是10G+，数亿条的。刚开始我解决的思路是这样的：首先用awk+sed将日志清洗一遍，然后用PHP或者Python将日志逐行读取，接着逐行按照特定的格式(key-value或者hash)的格式存入到redis（主从或者集群）之中。</p>
 
-<p>现在是2015年7月22日20：46，从今天起每周我都会至少发表一篇自己认为有价值的文章。当然，除了技术文章自己也会把自己的一些感想记录于此。</p>
+<p>可是，后面一试效率吓死人。我用的是Predis连接集群的方式，存入的格式是hash格式。因为和服务器性能和日志的长度有关系，这里我也没法给出一个时间来。但是，如果按照这个进度来，我们肯定是接受不了的，因为我们的数据是需要在短期内就被用作另一个系统的。</p>
 
-<h2 id="id-section-1">页面简介</h2>
+<h2 id="id-section-1">解决的办法</h2>
 
-<p>archive 页面是按照文章的归档的时间进行文章的列举的一个页面。系统自动更新。</p>
+<p>我们首先想到文件的读取方式是不是有问题。<code>排除了</code></p>
 
-<p>category 页面是按照文章的分类进行文章的列举的一个页面。系统自动更新。</p>
+<p>然后我想是不是语言的性能的问题。用Python的方式实现了一遍，提升了一点点，但是效果不是很明显。<code>排除了</code></p>
 
-<p>read 页面是我自己将自己读过的书籍，或者正在读的书籍列举的一个页面。作者手动更新。</p>
+<p>后面团队中有经验的同事，想到了一种Redis事务的方法。<code>采用了</code></p>
 
-<p>resume 页面是我自己将自己掌握的技能，已经掌握的程度列举的一个页面，希望能够很好地向第三方展现自己。作者手动更新。</p>
+<p><strong>php Predis使用的方式</strong></p>
 
-<p>about 页面是我自己将自己的基本的可以向外界透露的联系方式列举的一个页面。作者手动更新。</p>
+<p>Predis是PHP连接集群的一个类库。到目前为止大概是PHP使用redis3.0 cluster唯一的方式。</p>
 
-<p>RSS 页面是用来供读者进行文章订阅的。</p>
+<pre><code class="language-php">// ......省略引入类库代码
+Predis\Autoloader::register();
+$client = new Predis\Client(array('tcp://192.168.0.8:6379','tcp://192.168.0.8:6380,array('cluster'=&gt;'redis'));
+// 这句话很重要。获取集群的map表
+$client-&gt;set('fuck', 'you');
+$redis = $client-&gt;pipeline();
+$count = 0;
+$perNum = 0;
+if ($handle) {
+    while(($buffer = fgets($handle, 4096)) !== false) {
+            $aa = trim($buffer[0]);
+            $bb = trim($buffer[1]);
+            try {
+                $redis-&gt;setnx($aa, $bb);
+                $count++;
+                if($count % 1000 == 0) {
+                    $redis-&gt;execute();
+                    // 这两句也很重要。注销对象，并且创建新的空对象。
+                    unset($redis);
+                    $redis = $client-&gt;pipeline();
+                    $perNum = 0;
+                }
+                $perNum++;
+            } catch(Exception $e) {
+                 continue;
+            }
+        }
+    }
+    // 处理文件末尾不足1000的部分。
+   if($perNum &gt; 0) {
+        $redis-&gt;execute();
+    }
+}
+</code></pre>
 
-<h2 id="id-section-2">博客特色</h2>
+<p><strong>php redis使用事务的方式</strong></p>
 
-<p>本博客线上版所有的样式文件，脚本文件，图片文件等都存放于七牛云存储。（这样可以最大限度的加快访问速度）。本博客是借助于jekyll搭建的纯静态博客，但是很好地实现了本地开发和发布上线的流程。也就是可以完美的实现无网环境开发（加载本地资源），有网环境上线（加载七牛云存储资源）。本博客借助于<a href="http://getbootstrap.com/">bootstrap</a>完全实现了快平台的使用。利用<a href="https://github.com/jekyll/jekyll">jekyll</a>加上自己的目录规划使得整个项目越发的perfect。借助于highlight加上自己的样式的处理完美的支持各种代码的高亮……</p>
+<p>php redis处理事务的方式比较简单。因为网上使用这种方式都比较多。主要的函数就两个。multi() 和 exec()。原理是先打包，然后一次性执行。实现的方式和上述方式相仿。这里不赘述，注意函数名称的变化就好。</p>
 
-<h2 id="id-section-3">致谢</h2>
+<h2 id="id-section-2">总结</h2>
 
-<p>非常感谢<a href="https://github.com/jekyll/jekyll">jekyll</a>开源静态博客，感谢<a href="https://github.com">github</a>免费代码托管平台，感谢<a href="http://www.qiniu.com/">七牛</a>数据存储，感谢<a href="http://getbootstrap.com/">bootstrap</a>和所有的无私奉献的人们，正因为有你们这个世界才如此的丰富多彩。我也会和你们类似的方式来回报这个多彩的世界。</p>
+<p>redis3.0 cluster的坑很多。连接redis的phpredis和Predis的坑也很多。另外:目前redis3.0真的不是很稳定，能不用集群的方式用代理的方式替代就用稳定的代理方式吧。我们私下也在写自己的代理，尽管这周集群运转比较正常。</p>
+
+<p>那天看到亚一程在微博吐槽phpredis源码，并且正在重构。后面一想：同样是人差距还真的挺大的。</p>
 
 <p>（全文完）</p>
 
@@ -125,15 +160,15 @@
 	<ul class="pager pagination-sm">
 		<!--前一页-->
 		
-		<li class="previous disabled">
-			<a>&larr; Previous</a>
+		<li class="previous">
+			<a href="/20150811.html" title="狂刷Git技能">&larr; Previous</a>
 		</li>
 		
 
 		<!--下一页-->
 		
 		<li class="next">
-			<a href="/20150609.html" title="CodeIgniter集成Smarty">Next &rarr;</a>
+			<a href="/20150820.html" title="chrome插件之vimium">Next &rarr;</a>
 		</li>
 		
 	</ul>

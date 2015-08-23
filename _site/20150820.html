@@ -6,8 +6,8 @@
 	<!-- Enable responsive viewport -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="baidu-site-verification" content="2XMQAJIGe2" />
-	<title>Hello World</title>
-	<meta name="description" content="折腾。还记得之前折腾过CSDN，折腾过cnblogs，折腾过点点，折腾过wordpress，折腾过blogspot等等。现在到了折腾jekyll。jekyll我总共换过四次模板，从最原始的直接搬过来别人的模板，到用原生的模板，再到自己写简陋的模板，再到现在自己写的认为很满意的模板。自己感觉到了自己在审美和专业能力...">
+	<title>chrome插件之vimium</title>
+	<meta name="description" content="我的感言：”这是一款让自己用了就回不去的插件”。">
 	
 		<link rel="stylesheet" href="http://7xjddt.com1.z0.glb.clouddn.com/monokai.css">
 		<link rel="stylesheet" href="http://7xjddt.com1.z0.glb.clouddn.com/bootstrap.min.css">
@@ -74,11 +74,11 @@
 	<!--文章标题和说明-->
 	<header>
 		<!--文章名称-->
-		<h1 class="post-title">Hello World</h1>
+		<h1 class="post-title">chrome插件之vimium</h1>
 		<!--文章描述，时间和分类-->
 		<p class="desc">
 			<i class="fa fa-calendar"></i>
-			2015/05/30 &nbsp;&nbsp;
+			2015/08/20 &nbsp;&nbsp;
 			<i class="fa fa-folder-open-o fa-fw"></i>
 			<a href="/category/">others </a>
 		</p>
@@ -86,37 +86,61 @@
 
 	<!--文章内容-->
 	<article class="post-content">
-		<p>折腾。还记得之前折腾过<code>CSDN</code>，折腾过<code>cnblogs</code>，折腾过<code>点点</code>，折腾过<code>wordpress</code>，折腾过<code>blogspot</code>等等。现在到了折腾<code>jekyll</code>。<code>jekyll</code>我总共换过四次模板，从最原始的直接搬过来别人的模板，到用原生的模板，再到自己写简陋的模板，再到现在自己写的认为很满意的模板。自己感觉到了自己在审美和专业能力方面的提升。</p>
+		<p>我的感言：”这是一款让自己用了就回不去的插件”。</p>
 
-<h2 id="id-section">博客声明</h2>
+<p>首先，自己到chrome的应用商店搜索<a href="https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=zh-CN">vimium</a>。</p>
 
-<p>本博客，是一个master，不出意外在未来的很长一段时间我都不会改变它的样子，只会不断的增加它的内容（文章）。因为在我看来，它已经完全符合我最理想的博客的样子。肯定读者尊重文章版权，如有引用或者转载务必注明出处。我认为一个合格的人应该注重这些。</p>
+<p>然后，点击进行安装。</p>
 
-<p>现在是2015年7月22日20：46，从今天起每周我都会至少发表一篇自己认为有价值的文章。当然，除了技术文章自己也会把自己的一些感想记录于此。</p>
+<p>备注：如果不能打开应用商店，自己想想办法吧。</p>
 
-<h2 id="id-section-1">页面简介</h2>
+<h2 id="id-vimium">Vimium能做什么?</h2>
 
-<p>archive 页面是按照文章的归档的时间进行文章的列举的一个页面。系统自动更新。</p>
+<p>当你安装完Vimium之后，你就可以像使用vim的命令模式一样使用快捷键操作chrome浏览器。如果说世界上的编辑器有几种一个略叼的回答是三种：vim,emacs和其他编辑器。如果vim党chrome必不可少的插件之一是什么？一个略叼的回答是：Vimium。</p>
 
-<p>category 页面是按照文章的分类进行文章的列举的一个页面。系统自动更新。</p>
+<h2 id="id-vimium-1">Vimium怎么操作?</h2>
 
-<p>read 页面是我自己将自己读过的书籍，或者正在读的书籍列举的一个页面。作者手动更新。</p>
+<p>这个时候你可以使用如下的命令。注意区分大小写哦。</p>
 
-<p>resume 页面是我自己将自己掌握的技能，已经掌握的程度列举的一个页面，希望能够很好地向第三方展现自己。作者手动更新。</p>
+<p>G: 大写的G，也就是shift+g，就可以跑到页面的最低端。</p>
 
-<p>about 页面是我自己将自己的基本的可以向外界透露的联系方式列举的一个页面。作者手动更新。</p>
+<p>gg: 就可以跑到页面的最顶端。</p>
 
-<p>RSS 页面是用来供读者进行文章订阅的。</p>
+<p>k,j,h,l: 控制页面的上下左右。当然如果你嫌上线移动幅度太小的话可以使用d,u。</p>
 
-<h2 id="id-section-2">博客特色</h2>
+<p>x: 关闭窗口。</p>
 
-<p>本博客线上版所有的样式文件，脚本文件，图片文件等都存放于七牛云存储。（这样可以最大限度的加快访问速度）。本博客是借助于jekyll搭建的纯静态博客，但是很好地实现了本地开发和发布上线的流程。也就是可以完美的实现无网环境开发（加载本地资源），有网环境上线（加载七牛云存储资源）。本博客借助于<a href="http://getbootstrap.com/">bootstrap</a>完全实现了快平台的使用。利用<a href="https://github.com/jekyll/jekyll">jekyll</a>加上自己的目录规划使得整个项目越发的perfect。借助于highlight加上自己的样式的处理完美的支持各种代码的高亮……</p>
+<p>X: 打开刚才被关闭的窗口。</p>
 
-<h2 id="id-section-3">致谢</h2>
+<p>f/F: 查找链接的锚点。然后输入相应的快捷字母进行跳转。如果不想跳转则esc返回。</p>
 
-<p>非常感谢<a href="https://github.com/jekyll/jekyll">jekyll</a>开源静态博客，感谢<a href="https://github.com">github</a>免费代码托管平台，感谢<a href="http://www.qiniu.com/">七牛</a>数据存储，感谢<a href="http://getbootstrap.com/">bootstrap</a>和所有的无私奉献的人们，正因为有你们这个世界才如此的丰富多彩。我也会和你们类似的方式来回报这个多彩的世界。</p>
+<p>J,K: 进行Tab的切换。</p>
 
-<p>（全文完）</p>
+<p>o/O: 呼出输入框，搜索历史记录。</p>
+
+<p>r: 刷新页面。</p>
+
+<p>H: 页面后退。</p>
+
+<p>L: 页面前进。</p>
+
+<p>yy,p/P: 复制当期的url。p在当前页面粘贴。P在新的窗口粘贴。</p>
+
+<p>/: 启用搜索模式。</p>
+
+<p>……</p>
+
+<p>最后放一个绝招：? 显示所有的快捷键！</p>
+
+<h2 id="id-vimium-2">Vimium命令大全</h2>
+
+<p><img src="http://7xjddm.com1.z0.glb.clouddn.com/vimium_doc.png" alt="vimium_doc" /></p>
+
+<h2 id="id-section">总结</h2>
+
+<p>工具虽好，但也不要太过于迷恋。</p>
+
+<p>(全文完)</p>
 
 
 	</article>
@@ -125,15 +149,15 @@
 	<ul class="pager pagination-sm">
 		<!--前一页-->
 		
-		<li class="previous disabled">
-			<a>&larr; Previous</a>
+		<li class="previous">
+			<a href="/20150813.html" title="提升数据入Redis的速度">&larr; Previous</a>
 		</li>
 		
 
 		<!--下一页-->
 		
-		<li class="next">
-			<a href="/20150609.html" title="CodeIgniter集成Smarty">Next &rarr;</a>
+		<li class="next disabled">
+			<a>Next &rarr;</a>
 		</li>
 		
 	</ul>
