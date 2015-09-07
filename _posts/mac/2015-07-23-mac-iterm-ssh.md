@@ -2,7 +2,6 @@
 layout: post
 title:  iterm2之ssh配置
 categories: [mac]
-key: 1437804708
 ---
 
 说明一下：这里需要用到Expect。Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。
