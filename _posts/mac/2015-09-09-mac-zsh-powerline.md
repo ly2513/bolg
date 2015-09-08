@@ -110,9 +110,9 @@ cd powerline-font
 
 
 {% if site.model == 'pub' %}
-[terminal-wel]:   {{ site.pub.image }}Mac-iterm-zsh.png "展示图片"
+[terminal-wel]:   {{ site.pub.image }}mac-iterm-zsh.png "展示图片"
 {% else %}
-[terminal-wel]:   {{ site.dev.image }}terminal-wel.png "展示图片"
+[terminal-wel]:   {{ site.dev.image }}mac-iterm-zsh.png "展示图片"
 {% endif %}
 
 
