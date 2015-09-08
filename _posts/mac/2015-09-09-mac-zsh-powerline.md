@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  MAC终端配置攻略
+title:  Mac终端配置攻略
 categories: [mac]
 ---
 
@@ -110,7 +110,7 @@ cd powerline-font
 
 
 {% if site.model == 'pub' %}
-[terminal-wel]:   {{ site.pub.image }}mac-iterm-zsh.png "展示图片"
+[terminal-wel]:   {{ site.pub.image }}Mac-iterm-zsh.png "展示图片"
 {% else %}
 [terminal-wel]:   {{ site.dev.image }}terminal-wel.png "展示图片"
 {% endif %}
