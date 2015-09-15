@@ -1,6 +1,6 @@
 title: searchpcc - 一个正在老去的90后程序员
 home: searchpcc
-paginate: 10
+paginate: 8
 email: your-email@domain.com
 production_url: http://searchpcc.com
 baseurl: "" # the subpath of your site, e.g. /blog/
