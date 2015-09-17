@@ -19,6 +19,9 @@ ServerAliveInterval 60 # 时间单位为秒，多少秒自动请求一次
 ```shell
 /etc/init.d/ssh restart
 ```
+**(2) 问：SMTP和POP和IMAP的作用是什么？POP和IMAP有什么不用？
+
+**答：** 简单可以这么理解，SMTP是用来发送邮件的，POP/IMAP是用来接收邮件的。其中采用POP协议，客户端对邮件的删改操作不能和服务器端同步，而使用IMAP协议是可以同步的。
 
 {% include extends/disqus.html %}
 
