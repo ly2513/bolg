@@ -40,7 +40,7 @@ brew tap josegonzalez/homebrew-php
 brew install php-version
 
 # 注意：untap josegonzalez/homebrew-php
-rew untap josegonzalez/homebrew-php
+brew untap josegonzalez/homebrew-php
 ```
 
 编辑 ~/.zshrc 文件，在最后一行加入如下内容。然后soure ~/.zshrc
