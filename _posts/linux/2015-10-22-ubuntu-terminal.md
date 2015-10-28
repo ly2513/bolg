@@ -21,7 +21,7 @@ sudo apt-get install zsh
 ## 安装Git ##
 
 ```shell
-sudo apt-get insall git-core
+sudo apt-get install git-core
 ```
 
 ## 安装oh-my-zsh ##
@@ -38,8 +38,7 @@ cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 ```shell
 # 切换
 chsh -s `which zsh`
-# 重启。重启的命令很多，这里别过多的纠结了。
-sudo shutdown -r 0
+# 接着退出终端重新登录
 ```
 
 ## 安装pyhton ##
