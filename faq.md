@@ -35,7 +35,26 @@ git config --global credential.helper store
 
 **答：** 查看./configuer --.....的最后一行缺少什么，然后缺什么补什么就可以。一般都是缺少类库导致的。
 
+**(5) 问：Ubuntu14.04 如何跟换源？**
 
+**答：** 首先备份官网字段的源，然后替换国内的速度比较稳定的源。
+
+```shell
+# 备份
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+# 先删除sources.list里面所有的内容，然后加入适当的国内的源
+sudo vim /etc/apt/sources.list
+deb http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse
+```
 
 {% include extends/disqus.html %}
 
