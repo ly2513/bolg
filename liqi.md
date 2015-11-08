@@ -39,6 +39,8 @@ permalink: /liqi/
 
 * 2015-11-09 很晚了，第一版就更新到这里吧。后面持续更新。
 
+{% include extends/disqus.html %}
+
 [PhpStorm]:https://www.jetbrains.com/phpstorm/
 [Sublime Text]:http://www.sublimetext.com/
 [WebStorm]:https://www.jetbrains.com/webstorm/
@@ -56,4 +58,6 @@ permalink: /liqi/
 [Spectacle]:https://www.spectacleapp.com/
 [Best Trace]:https://itunes.apple.com/cn/app/best-trace/id1026747589?mt=8
 [SmartFinder]:http://www.smartisan.com/apps/smartfinder
+
+
 
