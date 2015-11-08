@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  提升数据入Redis的速度
+title:  Redis这样存入可能更快
 categories: [php]
 ---
 
