@@ -27,7 +27,7 @@ user:
   weibo: http://weibo.com/searchpcc
   twitter: http://twitter.com/searchpcc
   weixin: searchpcc
-  desc: 90后，有轻度的强迫症，有轻度的代码洁癖，热爱互联网，喜欢编程，目前是PHP Web开发者和爱好者。
+  desc: 90后，有轻度的强迫症，有轻度的代码洁癖，喜欢编程并且享受编程。
 
 # 这里替换成线上的静态资源的链接。 主要最后的"/"。也要注意css使用的字体的链接。
 pub:
