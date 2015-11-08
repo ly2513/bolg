@@ -90,7 +90,7 @@ source .zshrc
 
 ```
 # 下载字体
-https://github.com/Lokaltog/powerline-fonts
+git clone https://github.com/Lokaltog/powerline-fonts
 # 安装字体
 cd powerline-font
 ./install.sh
