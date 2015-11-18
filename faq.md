@@ -56,6 +56,33 @@ deb-src http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe 
 deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse
 ```
 
+**(6) 问：scp 命令如何使用？**
+
+**答：** 首先记住sftp，ssh，scp中的s都是secure的意思也就是“安全”的意思。其中 ```-P```是ssh端口（默认22可以不加），```－v```显示进程，其实还有```-4```，```-6```指定ipv4，ipv6的选项。
+
+```shell
+# 从本地到远程。本地当前目录下的test.log复制到远程主机的/home/test/目录。
+scp -v -P 22  ./test.log test@xxx.xxx.xxx.xxx:/home/test/
+# 从远程到本地。远程主机的/home/test/目录下的test.log复制本地当前目录。
+scp -v -P 22 test@xxx.xxx.xxx.xxx:/home/test/test.log ./
+```
+
+**(7) 问：Ubuntu如何限定端口？**
+
+**答：** 使用```ufw```。 
+
+```shell
+#开启防火墙
+sudu ufw enable
+#关闭防火墙
+sudu ufw disable
+#新增
+sudo ufw allow 端口号
+#删除添加过的
+sudo ufw delete allow 端口号
+```
+
+
 {% include extends/disqus.html %}
 
 
