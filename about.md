@@ -32,8 +32,5 @@ permalink: /about/
 			{{ site.user.desc }}
 		</p>
 	{% endif %}
-	<h2>公众号</h2>
-	<p><img src="http://7xjddm.com1.z0.glb.clouddn.com/weixin_8_8.jpg" alt="weixin"></p>
-
 	{% include extends/disqus.html %}
 </div>
