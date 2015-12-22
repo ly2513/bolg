@@ -1,10 +1,10 @@
-title: searchpcc - 守口如瓶，笑脸相迎。 
-home: searchpcc
+title: 高枫 - 苦难的经历并不是博得别人同情的资本，奋斗才是最重要的。 
+home: 高枫
 paginate: 8
-email: i@searchp.cc
-production_url: http://searchpcc.com
+email: 626375290@qq.com
+production_url: http://liyongweb.com
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://searchp.cc" # the base hostname & protocol for your site
+url: "http://liyongweb.com" # the base hostname & protocol for your site
 permalink: /:year:month:day.html
 
 # Build settings
@@ -17,16 +17,16 @@ kramdown:
   auto_id_prefix: 'id-'
 
 # 网站描述
-description:  一个90后的个人网站。 IT，php，Java，Python 等等。邮箱：i@searchp.cc
+description:  一个90后的个人网站。 IT，php，Java，Python 等等。邮箱：626375290@qq.com
 # 用户名，用来显示自己相关网络账号信息的。about.md之中。
-username: searchpcc
+username: ly2513
 
 user:
-  email: i@searchp.cc
-  github: http://github.com/searchpcc
-  weibo: http://weibo.com/searchpcc
-  twitter: http://twitter.com/searchpcc
-  weixin: searchpcc
+  email: 626375290@qq.com
+  github: http://github.com/ly2513
+  weibo: http://weibo.com/ly2513
+  twitter: http://twitter.com/ly2513
+  weixin: ly2513
   desc: 90后，有轻度的强迫症，有轻度的代码洁癖，喜欢编程并且享受编程。
 
 # 这里替换成线上的静态资源的链接。 主要最后的"/"。也要注意css使用的字体的链接。
